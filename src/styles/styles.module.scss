@@ -1,0 +1,115 @@
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0px 0px 0px 0px);
+  clip: rect(0, 0, 0, 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--maxWidthContainer) + px;
+  padding-right: var(--containerPadding) + px;
+  padding-left: var(--containerPadding) + px;
+}
+
+.btn-reset {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.input-reset {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  border-radius: 0;
+  background-color: #fff;
+
+  &::-webkit-search-decoration,
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-results-button,
+  &::-webkit-search-results-decoration {
+    display: none;
+  }
+}
+
+.is-hidden {
+  display: none !important;
+  /* stylelint-disable-line declaration-no-important */
+}
+
+.js-focus-visible:focus:not(.focus-visible) {
+  outline: none;
+}
+
+.colored {
+  color: var(--pasive);
+  transition: color .3s ease-in-out;
+}
+
+.server-error {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: peru;
+
+  &-picture {
+    display: block;
+    max-height: 400px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    transform: translateX(30px);
+  }
+
+  &-img {
+    display: block;
+    max-height: 400px;
+  }
+}
+
+.loader {
+  animation: loader 2.3s linear infinite;
+}
+
+// fixed blocks
+.is-fixed {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-color: var(--dark-theme);
+  opacity: 1;
+  z-index: 5;
+}
+
+.subtitle {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 1.875rem;
+  line-height: 2.375rem;
+  align-items: center;
+  font-size: 1.75rem;
+
+  &::after {
+    flex: 1 1 0;
+    height: 0.25rem;
+    width: 100%;
+    border-radius: 0.125rem;
+    content: '';
+    background-color: var(--pasive);
+    transition: background-color .3s ease-in-out;
+  }
+}

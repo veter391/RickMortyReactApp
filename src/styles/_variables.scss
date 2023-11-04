@@ -1,0 +1,6 @@
+//-Required Variables!!
+$maxWidth: 1920; // not px
+$containerPadding: 100; // not px
+$maxWidthContainer: 1680 + ($containerPadding * 2); // not px
+$ContainerPx: 1680 + ($containerPadding * 2) + px; // not px
+$body-font: "OpenSans";

@@ -1,0 +1,62 @@
+.aditional {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+
+  &__totop {
+    margin-bottom: 20px;
+  }
+
+  &__svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--light-theme);
+    stroke: var(--light-theme);
+    transition-property: fill, stroke, filter;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+  }
+
+  &__theme {
+    &_dark {
+      display: none;
+      visibility: hidden;
+    }
+
+    &.light {
+      .aditional__theme {
+        &_light {
+          display: none;
+          visibility: hidden;
+        }
+
+        &_dark {
+          display: block;
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  &__theme,
+  &__totop {
+    display: block;
+    width: 50px;
+    height: 50px;
+
+    &:hover,
+    &.focus-visible {
+      svg {
+        filter: drop-shadow(0 0 10px var(--pasive));
+        fill: var(--pasive);
+        stroke: var(--pasive);
+      }
+    }
+
+    &:active {
+      svg {
+        filter: none;
+      }
+    }
+  }
+}

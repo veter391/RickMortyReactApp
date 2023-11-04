@@ -1,0 +1,188 @@
+@import 'imports';
+
+/* ::: Instrucrions :::
+
+-use convert px in (rem em %)-
+  p {
+	  font-size:rem(20px);
+	  padding:em(15px);
+  }
+
+::: Instructions ::: */
+
+// ::: Inckude Mixins :::
+// @include keyframes;
+
+// ::: Variables :::
+:root {
+  // --containerPadding:  $containerPadding + px; // not px
+  // --maxWidthContainer: $maxWidthContainer + px; // not px
+  // --ContainerPx: 1680 + ($containerPadding * 2) + px; // not px
+
+  --dark-theme: #005956;
+  --light-theme: #EEEEEE;
+  --primary: #008d88;
+  --hover: #14dd25;
+  --pasive: rgb(199, 245, 179);
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  /* so that padding doesn't affect the look */
+  height: 100%;
+  overflow: overlay; // if browser support overly
+  min-width: 320px;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  position: relative;
+  height: 100%;
+  min-width: 320px;
+  font-family: $body-font, Arial, sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1;
+  /* space between lines in text. */
+  color: var(--light-theme);
+  /* text color primari for texts */
+  background-color: var(--dark-theme);
+  /* page bacground color */
+  overflow: overlay; // if browser support overlay
+  letter-spacing: rem(1);
+}
+
+button,
+input {
+  font: inherit;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  transition: color .3s ease;
+}
+
+picture {
+  display: block;
+  width: fit-content;
+}
+
+#root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  /* if you use position: sticky on the site - remove this setting */
+  background-color: var(--dark-theme);
+  transition: background-color .3s ease-in-out;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: $maxWidthContainer + px;
+  padding-right: $containerPadding + px;
+  padding-left: $containerPadding + px;
+}
+
+
+// keyframes
+@keyframes loader {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes alive {
+  0% {
+    box-shadow: 0 0 3px #47fff6;
+  }
+
+  50% {
+    box-shadow: 0 0 11px #47fff6;
+    background-color: #0ff823;
+  }
+
+  100% {
+    box-shadow: 0 0 3px #47fff6;
+  }
+}
+
+@keyframes dead {
+  0% {
+    box-shadow: 0 0 3px red;
+  }
+
+  50% {
+    box-shadow: 0 0 11px red;
+    background-color: #f000b8;
+  }
+
+  100% {
+    box-shadow: 0 0 3px red;
+  }
+}
+
+/*Remove scrollbar for entire page*/
+/*doesn't work in firefox!!!*/
+*::-webkit-scrollbar {
+  width: 7px;
+  background: transparent;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background: var(--pasive);
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+  background-color: transparent;
+}
+
+.ytp-pause-overlay {
+  display: none;
+}

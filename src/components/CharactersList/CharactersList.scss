@@ -1,0 +1,64 @@
+@import '../../styles/libraries/pxconvert';
+
+.characters {
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // IE
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-bottom: rem(50);
+  }
+
+  &__btn {
+    position: relative;
+    overflow: hidden;
+    display: none;
+    margin: 0 auto;
+    padding: rem(15) rem(40);
+    border: 2px solid var(--pasive);
+    font-size: rem(18);
+    color: var(--pasive);
+    transition-property: color, opacity;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+    z-index: 2;
+
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      content: '';
+      background-color: var(--pasive);
+      transform: translateX(-100%);
+      transition: transform .3s ease-in-out;
+      z-index: -1;
+    }
+
+    &:hover,
+    &.focus-visible {
+      color: var(--primary);
+
+      &::before {
+        transform: none;
+      }
+    }
+
+    &:active {
+      opacity: .7;
+    }
+
+    // disabled button
+    &.disabled {
+      opacity: .2;
+      color: var(--primary);
+      cursor: initial;
+
+      &::before {
+        transform: translateX(0);
+      }
+    }
+  }
+}

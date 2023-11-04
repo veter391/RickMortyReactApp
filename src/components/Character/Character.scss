@@ -1,0 +1,26 @@
+@import '../../styles/libraries/pxconvert';
+
+.characters {
+  &__item {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border: 2px solid var(--pasive);
+    border-radius: rem(10);
+    text-align: left;
+    background-color: var(--primary);
+    transition-property: border, color, background-color;
+    transition-duration: .3s;
+    transition-timing-function: ease-in-out;
+
+    &_active {
+      box-shadow: 4px 4px 13px var(--pasive);
+    }
+
+    &:hover {
+      .characters__img {
+        border-radius: 0;
+      }
+    }
+  }
+}
