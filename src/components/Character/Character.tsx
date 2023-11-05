@@ -1,44 +1,49 @@
+// styles
 import styles from '../../styles/styles.module.scss'
 import './Character.scss'
 
+// define type of character
 type CharType = {
-  id: number;
-  name: string;
-  status: string;
-  species: string;
-  location: {
-    name: string
-  };
-  image: string;
+  char: {
+    id: number;
+    name: string;
+    status: string;
+    species: string;
+    location: {
+      name: string
+    };
+    image: string;
+  }
 }
 
+function Character({ char }: CharType) {
 
-function Character({char} : {char: CharType}) {
+  // data from char
+  const { name, status, species, location, image } = char;
 
-    const {name, status, species, location, image} = char;
+  return (
+    // characters__item_active
+    <li className="characters__item">
+      <div className="characters__title">
+        <img className="characters__img" src={ image } alt="Rick Sanches" />
+        <h3 className="characters__name">{ name }</h3>
+      </div>
 
-    return (
-        // characters__item_active
-        <li className="characters__item">
-            <div className="characters__title">
-                <img className="characters__img" src={image} alt="Rick Sanches" />
-                <h3 className="characters__name">{name}</h3>
-            </div>
-            <p className="characters__info">
-                <span className="characters__status status">
-                  <span className={styles.colored}>Status:</span> {status}
-                </span>
+      <p className="characters__info">
+        <span className="characters__status status">
+          <span className={ styles.colored }>Status:</span> { status }
+        </span>
 
-                <span className="characters__specie">
-                  <span className={styles.colored}>Specie:</span> {species}
-                </span>
+        <span className="characters__specie">
+          <span className={ styles.colored }>Specie:</span> { species }
+        </span>
 
-                <span className="characters__origin">
-                  <span className={styles.colored}>Last location:</span> {location.name}
-                </span>
-            </p>
-        </li>
-     );
+        <span className="characters__origin">
+          <span className={ styles.colored }>Last location:</span> { location.name }
+        </span>
+      </p>
+    </li>
+  );
 }
 
 export default Character;

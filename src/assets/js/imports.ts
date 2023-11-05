@@ -103,7 +103,7 @@
 // consoleText(['Hello, i’m Nazar.', 'I like css, js animations.'],'.header__title');
 
 // ::::: check and add class to body, depending of suport webp images :::::
-export {isWebp} from "./libraries/check-webp-support.js";
+export { isWebp } from "./libraries/check-webp-support.ts";
 
 
 // import $, { css } from "jquery";

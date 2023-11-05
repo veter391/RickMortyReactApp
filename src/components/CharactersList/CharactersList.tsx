@@ -1,114 +1,106 @@
-import { useEffect, useState } from 'react';
-import styles from '../../styles/styles.module.scss'
-import Character from "../Character/Character";
-import './CharactersList.scss'
-import errorPng from '../../assets/img/error.png'
-import errorWebp from '../../assets/img/error.png'
-import getData from '../../helpers/getData';
+// components js,react etc...
+import { useEffect, useState, useContext } from 'react'
+import { AppContext } from '../App/App'
+import Character from "../Character/Character"
+import RickYMortyService from '../../services/RickYMortyService'
+import Spinner from '../Spinner/Spinner'
+import ErrorMessage from '../ErrorMessage/ErrorMessage'
 
-type StateProperties = {
-  info: object;
-  results: object[];
+// styles
+import styles from '../../styles/styles.module.scss'
+import './CharactersList.scss'
+
+// define props type
+type CharacterListPropsType = {
+  characterPages: {
+    current: number;
+    last: number;
+  };
+  setDataList: any;
+  characters: object[];
 }
 
-function CharactersList() {
+function CharactersList({ characterPages, setDataList, characters }: CharacterListPropsType) {
 
-  const [characters, setCharacters] = useState<StateProperties[]>([]);
+  // get variavles from context
+  const { setCharacters, setCharacterPages }: any = useContext( AppContext );
+
+  // error state
   const [error, setError] = useState(false);
-  const [charactersPages, setCharactersPages] = useState({
-    current: 1,
-    last: 42,
-  });
-  const [btnSettings, setBtnSettings] = useState({
-    disabled: false,
-    styles: { display: 'none', visibility: 'hidden' },
-    class: ''
-  })
+  // loading state
+  const [loading, setLoading] = useState(true);
 
-  function findByName(list, substr) {
-    return list?.filter(item => item.name.toLowerCase().includes(substr));
-  }
+  // get all the characters once so as not to call the function every time when rendering
+  useEffect(() => {
+    // get data(characters)
+    const service = new RickYMortyService();
+    // await to all characters
+    service.getAllCharacters()
+      .then(( data: any | undefined ) => {
 
-  function pack(list, showedItems, page) {
-    const packEnd = page * showedItems;
-    const packStart = packEnd - showedItems;
+        // set data list and characters(clone of global list)
+        setDataList([...data]);
+        setCharacters([...data]);
 
-    console.log(packEnd, packStart, list.length)
-
-    if(packStart > list.length){
-      return console.error('Not found more items');
-    }
-
-    return list?.filter((item:any, i:number) => i >= packStart && i < packEnd);
-  }
-
-  function getCharacters() {
-    // await to response
-
-      getData().then(data => {
-        setError(false)
-
-        // add total pages to variable
-        // setCharactersPages({...charactersPages, last: data.info.pages});
-
-
-        // check characters page and disable btn if it's last
-        if (charactersPages.current >= charactersPages.last) {
-          setBtnSettings({ ...btnSettings, disabled: true, class: 'disabled' })
-        } else {
-          setBtnSettings({ ...btnSettings, disabled: false, class: '' })
-        }
-
-        // hide btn more when exist only one page or no pages
-        if (charactersPages.last > 1) {
-          setBtnSettings({ ...btnSettings, styles: { display: 'block', visibility: 'visible' } })
-        } else {
-          setBtnSettings({ ...btnSettings, styles: { display: 'none', visibility: 'hidden' } })
-        }
-
-        // return findByName(data, 'morty');
-        return pack(data, 1, 826);
-      })
-      .then(data => {
-        console.log(data)
-        setCharacters([...data])
+        // disable spinner when data is loaded
+        setLoading(false);
       })
       .catch(err => {
-        // block btn
-        setBtnSettings({ ...btnSettings, styles: { display: 'none', visibility: 'hidden' } })
-        setError(err)
+        // throw error
+        setError(err);
+        // disable spinner when data is loaded
+        setLoading(false);
       });
+  }, [])
+
+  // watch error every render
+  useEffect(() => {
+    // add error mesage when character doesn't exist
+    const newMessage: any = { message: "The character doesn't exist please try again" };
+    // check characters and no-loading if both true return message
+    setError( !loading && characters.length === 0 ? newMessage : false );
+
+  }, [characters] )
+
+  function addCharacters() {
+    // increment current characterPage and define last
+    setCharacterPages({ ...characterPages, last: Math.ceil(characters.length / 20), current: ++characterPages.current });
   }
 
-
-  // add 20 characters in the begining
-  useEffect(() => {
-    getCharacters();
-  }, [])
-  // const pack = characters.filter((el, i) => el.id < 20);
-
+  // if exist error return error
+  const errorMessage = error ? <ErrorMessage error={ error } /> : null,
+        // if wait info from server return spinner
+        spinner = loading ? <Spinner /> : null,
+        // get pack of 20 characters
+        items = characters.map(( item: any ) => <Character key={ item.id } char={ item } />).slice(0, characterPages.current * 20),
+        // if doesn't exist error and spinner is null return content
+        content = !( loading || error ) ? items : null,
+        /*hide btn when error, spinner or characters(pack) <= 20*/
+        button = characters.length / 20 >= 1 && !(loading || error) && characterPages.current < characterPages.last && <MoreButton clickFunction={ addCharacters } />
 
   return (
     <>
-      <ul className={`${styles['list-reset']} characters__list`}>
-        {error ? <ErrorData error={error} /> : characters.map((item : any) => <Character key={item.id} char={item} />)}
+
+      { errorMessage }
+      { spinner }
+
+      <ul className={ `${ styles['list-reset'] } characters__list` }>
+        { content }
       </ul>
-      <div className={styles.loading}></div>
-      <button className={`${styles['btn-reset']} characters__btn ${ btnSettings.class }`} disabled={ btnSettings.disabled } style={ btnSettings.styles }>Add more +</button>
+
+      { button }
+
     </>
   );
 }
 
-function ErrorData({error} : { error : any } ) {
-    return(
-      <li className={styles['server-error']}>
-        <picture className={styles['server-error-picture']}>
-          <source srcSet={errorWebp} type="image/webp" />
-          <img className={styles['server-error-img']} src={errorPng} alt="error" />
-        </picture>
-        <p>{error.message}</p>
-      </li>
-    );
+// new mini component MoreBtn
+function MoreButton({ clickFunction } : { clickFunction: () => void }) {
+  return(
+    <button onClick={ clickFunction }
+      className={ `${ styles['btn-reset'] } characters__btn` }
+    >Add more +</button>
+  );
 }
 
 export default CharactersList;

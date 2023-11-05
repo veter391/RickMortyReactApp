@@ -1,27 +1,41 @@
-# React + TypeScript + Vite
+# Rick y Morty React App => find your favorite character )
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Get started
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+1. Clone repository or download Zip
+2. Open folder go to console/bash and use the following commands
+```bash
+  npm install
+  npm run dev
 ```
+or if you want to see the production version follow next commands
+```bash
+  npm install
+  npm run build
+  npm run preview
+```
+3. Then check the console and use the local link to preview the project.
+```bash
+  # ...something like this...
+  ➜  Local:   http://localhost:5173/ 
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+  # ➜  Network: use --host to expose
+  # ➜  press h to show help
+```
+4. Enjoy a great project :))
+
+
+## Demo
+- [View Demo](https://veter391.github.io/RickMortyDemo/)
+- [The same project on Vanilla JS](https://github.com/veter391/Rick-y-Morty)
+
+
+## Tools
+* Used Api => [Rick y morty Api](https://rickandmortyapi.com/)
+* React + TypeScript + Vite + Sass
+* Google ❤️ ;)
+
+
+## More
+* (src/styles/libraries) or (src/assets/js) /libraries => is the solution to something small problems in css/js
+* (src/styles) or (src/assets/js) /imports => help to import libraries to project

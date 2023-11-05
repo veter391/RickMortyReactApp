@@ -13,7 +13,7 @@
   &__btn {
     position: relative;
     overflow: hidden;
-    display: none;
+    display: block;
     margin: 0 auto;
     padding: rem(15) rem(40);
     border: 2px solid var(--pasive);

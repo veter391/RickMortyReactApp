@@ -15,10 +15,6 @@
 
 // ::: Variables :::
 :root {
-  // --containerPadding:  $containerPadding + px; // not px
-  // --maxWidthContainer: $maxWidthContainer + px; // not px
-  // --ContainerPx: 1680 + ($containerPadding * 2) + px; // not px
-
   --dark-theme: #005956;
   --light-theme: #EEEEEE;
   --primary: #008d88;
@@ -122,16 +118,6 @@ picture {
 
 
 // keyframes
-@keyframes loader {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes alive {
   0% {
     box-shadow: 0 0 3px #47fff6;
