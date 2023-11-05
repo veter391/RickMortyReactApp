@@ -1,3 +1,5 @@
+
+
 .visually-hidden {
   position: absolute;
   overflow: hidden;
@@ -8,13 +10,6 @@
   margin: -1px;
   padding: 0;
   border: 0;
-}
-
-.container {
-  margin: 0 auto;
-  max-width: var(--maxWidthContainer) + px;
-  padding-right: var(--containerPadding) + px;
-  padding-left: var(--containerPadding) + px;
 }
 
 .btn-reset {
@@ -122,4 +117,15 @@
     background-color: var(--pasive);
     transition: background-color .3s ease-in-out;
   }
+}
+
+// screen = 900px
+@media (max-width: 950px) {
+
+  // container
+  .container {
+    padding-right: 35px;
+    padding-left: 35px;
+  }
+
 }

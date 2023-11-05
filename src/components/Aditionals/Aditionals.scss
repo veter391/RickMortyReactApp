@@ -60,3 +60,22 @@
     }
   }
 }
+
+// screen = 900px
+@media (max-width: 950px) {
+  // aditionals
+  .aditional {
+    right: 5px;
+    bottom: 12px;
+
+    &__theme,
+    &__totop {
+      width: 35px;
+      height: 35px;
+    }
+
+    &__totop {
+      margin-bottom: 10px;
+    }
+  }
+}

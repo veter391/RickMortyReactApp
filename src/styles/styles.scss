@@ -115,6 +115,16 @@ picture {
   padding-right: $containerPadding + px;
   padding-left: $containerPadding + px;
 }
+// screen = 900px
+@media (max-width: 950px) {
+
+  // container
+  .container {
+    padding-right: 35px;
+    padding-left: 35px;
+  }
+
+}
 
 
 // keyframes
