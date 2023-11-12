@@ -26,7 +26,7 @@ or if you want to see the production version follow next commands
 
 
 ## Demo
-- [View Demo](https://veter391.github.io/RickMortyDemo/)
+- [View Demo](https://veter391.github.io/RickMortyReactApp/)
 - [The same project on Vanilla JS](https://github.com/veter391/Rick-y-Morty)
 
 
